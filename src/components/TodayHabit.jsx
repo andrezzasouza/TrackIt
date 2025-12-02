@@ -46,18 +46,18 @@ export default function TodayHabit({ dailyTask, todayCallToServer }) {
   };
 
   function configureAxios(taskId, taskStat) {
-    const promise = API.post(`/habits/${taskId}/${taskStat}`, config);
+    const promise = API.post(`/habits/${taskId}/${taskStat}`, {}, config);
     return promise;
   }
 
   function checkTask() {
     setTaskDone(!taskDone);
     if (dailyTask.done) {
-      const promise = configureAxios(dailyTask.id, 'unchecked');
+      const promise = configureAxios(dailyTask.id, 'uncheck');
       promise.then(removeChecked);
       promise.catch(markAgain);
     } else {
-      const promise = configureAxios(dailyTask.id, 'checked');
+      const promise = configureAxios(dailyTask.id, 'check');
       promise.then(addChecked);
       promise.catch(markAgain);
     }
