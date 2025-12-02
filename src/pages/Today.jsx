@@ -2,7 +2,7 @@ import dayjs from 'dayjs';
 import 'dayjs/locale/pt-br';
 
 import { useEffect, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API from '../services/api/api';
 import NoneToday from '../components/NoneToday';
 import TodayHabit from '../components/TodayHabit';
@@ -14,8 +14,9 @@ import UserContext from '../contexts/UserContext';
 export default function Today() {
   const today = dayjs().locale('pt-br').format('dddd, DD/MM');
 
-  const history = useHistory();
+  const navigate = useNavigate();
   const { userData, dailyStats, setDailyStats } = useContext(UserContext);
+  
   const [subtitle, setSubtitle] = useState(false);
   const [todayScreen, setTodayScreen] = useState('');
 
@@ -27,7 +28,7 @@ export default function Today() {
 
   function loadError() {
     alert('Algo deu errado.');
-    history.push('/');
+    navigate('/');
   }
 
   function loadToday(res) {

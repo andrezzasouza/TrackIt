@@ -1,4 +1,4 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState } from 'react';
 import UserContext from './contexts/UserContext';
 
@@ -19,23 +19,13 @@ function App() {
     >
       <BrowserRouter>
         <GlobalStyle />
-        <Switch>
-          <Route path="/" exact>
-            <LogIn />
-          </Route>
-          <Route path="/cadastro" exact>
-            <SignUp />
-          </Route>
-          <Route path="/habitos" exact>
-            <Habits />
-          </Route>
-          <Route path="/hoje" exact>
-            <Today />
-          </Route>
-          <Route path="/historico" exact>
-            <History />
-          </Route>
-        </Switch>
+        <Routes>
+          <Route index element={<LogIn />} />
+          <Route path="cadastro" element={<SignUp />} />
+          <Route path="habitos" element={<Habits />} />
+          <Route path="hoje" element={<Today />} />
+          <Route path="historico" element={<History />} />
+        </Routes>
       </BrowserRouter>
     </UserContext.Provider>
   );

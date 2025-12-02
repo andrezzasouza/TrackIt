@@ -7,7 +7,7 @@ import {
   CheckButton,
   HighestStyle,
   CurrentStyle,
-  TodayHabitStyle
+  TodayHabitStyle,
 } from '../assets/styles/TodayStyle';
 
 export default function TodayHabit({ dailyTask, todayCallToServer }) {
@@ -16,7 +16,7 @@ export default function TodayHabit({ dailyTask, todayCallToServer }) {
   const [current, setCurrent] = useState(dailyTask.currentSequence);
   const [highest, setHighest] = useState(dailyTask.highestSequence);
   const [record, setRecord] = useState(
-    current === highest && highest !== 0 && dailyTask.done === true
+    current === highest && highest !== 0 && dailyTask.done === true,
   );
 
   function removeChecked() {
@@ -41,8 +41,8 @@ export default function TodayHabit({ dailyTask, todayCallToServer }) {
 
   const config = {
     headers: {
-      Authorization: `Bearer ${userData.token}`
-    }
+      Authorization: `Bearer ${userData.token}`,
+    },
   };
 
   function configureAxios(taskId, taskStat) {

@@ -1,7 +1,6 @@
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
+import { ThreeDots } from 'react-loader-spinner';
 
-import { useHistory, Link } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useState, useContext } from 'react';
 import API from '../services/api/api';
 import UserContext from '../contexts/UserContext';
@@ -10,7 +9,7 @@ import {
   Logo,
   InputStyle,
   BigButton,
-  Alternate
+  Alternate,
 } from '../assets/styles/LogInSignUp';
 
 export default function LogIn() {
@@ -19,11 +18,11 @@ export default function LogIn() {
   const [enabled, setEnabled] = useState(true);
 
   const { setUserData } = useContext(UserContext);
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function enter(response) {
     setUserData(response.data);
-    history.push('/hoje');
+    navigate('/hoje');
     setEmail('');
     setPassword('');
     setEnabled(true);
@@ -37,7 +36,7 @@ export default function LogIn() {
   function prepareBody() {
     const body = {
       email,
-      password
+      password,
     };
     return body;
   }
@@ -75,7 +74,7 @@ export default function LogIn() {
           {enabled ? (
             'Entrar'
           ) : (
-            <Loader type="ThreeDots" color="#FFFFFF" height={45} width={51} />
+            <ThreeDots color="#FFFFFF" height={45} width={51} />
           )}
         </BigButton>
       </form>

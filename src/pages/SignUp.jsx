@@ -1,8 +1,6 @@
-import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
-import Loader from 'react-loader-spinner';
-
-import { useHistory, Link } from 'react-router-dom';
 import { useState } from 'react';
+import { useNavigate, Link } from 'react-router-dom';
+import { ThreeDots } from 'react-loader-spinner';
 import API from '../services/api/api';
 import {
   Container,
@@ -19,10 +17,10 @@ export default function SignUp() {
   const [createPhoto, setCreatePhoto] = useState('');
   const [enabled, setEnabled] = useState(true);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   function createUser() {
-    history.push('/');
+    navigate('/');
     setCreateEmail('');
     setCreatePassword('');
     setCreateName('');
@@ -94,7 +92,7 @@ export default function SignUp() {
           {enabled ? (
             'Cadastrar'
           ) : (
-            <Loader type="ThreeDots" color="#FFFFFF" height={45} width={51} />
+            <ThreeDots color="#FFFFFF" height={45} width={51} />
           )}
         </BigButton>
       </form>

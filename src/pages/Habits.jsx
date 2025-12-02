@@ -1,6 +1,6 @@
 import { IoAddSharp } from 'react-icons/io5';
 import { useEffect, useState, useContext } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import API from '../services/api/api';
 
 import { MyHabits, Contents } from '../assets/styles/HabitsStyle';
@@ -19,7 +19,7 @@ export default function Habits() {
 
   const { userData } = useContext(UserContext);
 
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const config = {
     headers: {
@@ -29,7 +29,7 @@ export default function Habits() {
 
   function loadingError() {
     alert('Algo deu errado. Tente novamente.');
-    history.push('/');
+    navigate('/');
   }
 
   function addBox() {
